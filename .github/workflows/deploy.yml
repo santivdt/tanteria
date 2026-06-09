@@ -31,7 +31,7 @@ jobs:
         with:
           server: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
+          key: ${{ secrets.SFTP_KEY }}
           port: ${{ secrets.SFTP_PORT }}
           uploads: |
             ./dist/ => ${{ secrets.SFTP_REMOTE_PATH }}

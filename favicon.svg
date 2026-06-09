@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#ff00aa"/>
+      <stop offset="30%" stop-color="#ffe600"/>
+      <stop offset="55%" stop-color="#aaff00"/>
+      <stop offset="80%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#aa00ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="26" y="26" width="460" height="460" rx="90" fill="#11001a" stroke="#ffffff" stroke-width="20"/>
+  <g transform="skewY(-4)" transform-origin="256 256">
+    <text x="256" y="256"
+          font-family="Impact, 'Arial Black', sans-serif"
+          font-size="300" font-weight="900" letter-spacing="4"
+          text-anchor="middle" dominant-baseline="central"
+          paint-order="stroke" stroke="#ffffff" stroke-width="18"
+          fill="url(#tr)">TR</text>
+  </g>
+</svg>

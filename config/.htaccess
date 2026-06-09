@@ -1,0 +1,13 @@
+# Blokkeer ALLE web-toegang tot deze map (config met API-key).
+# subscribe.php leest de bestanden hier server-side, dat blijft werken.
+
+# LiteSpeed / Apache 2.4 (Hostinger)
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Oudere Apache 2.2
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

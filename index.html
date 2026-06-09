@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>★ TANTE RIA ★ De gezelligste avond van het jaar ★</title>
+    <meta
+      name="description"
+      content="Tante Ria nodigt je uit voor de gezelligste avond van het jaar. Save the date en schrijf je in voor de nieuwsbrief."
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Social share (Open Graph + Twitter) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="★ TANTE RIA ★" />
+    <meta
+      property="og:description"
+      content="De gezelligste avond van het jaar. Save the date!"
+    />
+    <meta property="og:image" content="https://tanteria.nl/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://tanteria.nl/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="★ TANTE RIA ★" />
+    <meta
+      name="twitter:description"
+      content="De gezelligste avond van het jaar. Save the date!"
+    />
+    <meta name="twitter:image" content="https://tanteria.nl/og-image.png" />
+
+    <style>
+      /* ===========================================================
+     TANTE RIA — peak 1998 GeoCities / WordArt energy
+     Loud chrome outside, legible panels inside.
+     =========================================================== */
+
+      :root {
+        --magenta: #ff00aa;
+        --cyan: #00e5ff;
+        --lime: #aaff00;
+        --ink: #11001a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Comic Sans MS", "Trebuchet MS", Verdana, sans-serif;
+        color: #fff;
+        text-align: center;
+        /* Tiled, repeating, eye-searing background built from CSS gradients.
+       Diagonal rainbow stripes + a checker overlay. No image files. */
+        background-color: var(--ink);
+        background-image:
+          repeating-linear-gradient(
+            45deg,
+            rgba(255, 0, 170, 0.55) 0px,
+            rgba(255, 0, 170, 0.55) 22px,
+            rgba(0, 229, 255, 0.55) 22px,
+            rgba(0, 229, 255, 0.55) 44px,
+            rgba(170, 255, 0, 0.55) 44px,
+            rgba(170, 255, 0, 0.55) 66px
+          ),
+          repeating-conic-gradient(
+            from 0deg at 0 0,
+            rgba(0, 0, 0, 0.18) 0deg 90deg,
+            rgba(255, 255, 255, 0.1) 90deg 180deg
+          );
+        background-size:
+          100% 100%,
+          48px 48px;
+        background-attachment: fixed;
+        min-height: 100vh;
+        padding: 18px 10px 60px;
+      }
+
+      .page {
+        max-width: 720px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* =========================================================
+     1. HERO TITLE — faux WordArt
+     ========================================================= */
+      .hero {
+        margin: 10px 0 6px;
+        transform: skewY(-3deg);
+      }
+      .wordart {
+        font-family: Impact, "Arial Black", "Haettenschweiler", sans-serif;
+        font-weight: 900;
+        /* clamp keeps it from overflowing on phones */
+        font-size: clamp(3rem, 16vw, 8.5rem);
+        line-height: 0.9;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0;
+        /* rainbow gradient FILL via background-clip */
+        background: linear-gradient(
+          90deg,
+          #ff00aa,
+          #ff6600,
+          #ffe600,
+          #aaff00,
+          #00e5ff,
+          #aa00ff,
+          #ff00aa
+        );
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        /* thick outline + hard drop shadow stacked behind the gradient text */
+        -webkit-text-stroke: 3px #11001a;
+        filter: drop-shadow(4px 4px 0 #000)
+          drop-shadow(6px 6px 0 rgba(0, 229, 255, 0.9));
+        /* slow shimmer — gradient slides, gentle */
+        animation: shimmer 8s ease-in-out infinite;
+      }
+      .wordart .line2 {
+        display: block;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* =========================================================
+     2. TAGLINE — CSS marquee (no deprecated <marquee>)
+     ========================================================= */
+      .marquee {
+        margin: 14px 0 22px;
+        background: #000;
+        border-top: 4px solid var(--lime);
+        border-bottom: 4px solid var(--lime);
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 8px 0;
+      }
+      .marquee__track {
+        display: inline-block;
+        padding-left: 100%;
+        font-weight: bold;
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+        /* rainbow gradient text, same trick as the hero title */
+        background: linear-gradient(
+          90deg,
+          #ff00aa,
+          #ffe600,
+          #aaff00,
+          #00e5ff,
+          #aa00ff,
+          #ff00aa
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation:
+          scroll-left 16s linear infinite,
+          shimmer 6s ease-in-out infinite;
+      }
+      .marquee:hover .marquee__track {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* =========================================================
+     3. PANELS — semi-opaque so text stays readable
+     ========================================================= */
+      .panel {
+        position: relative;
+        background: rgba(17, 0, 26, 0.85);
+        border-radius: 8px;
+        box-shadow:
+          0 0 0 3px #000,
+          8px 8px 0 rgba(0, 0, 0, 0.5),
+          0 0 22px rgba(255, 0, 170, 0.45);
+        padding: 22px 24px;
+        margin: 0 auto 26px;
+        text-align: left;
+      }
+      /* static rainbow glow ring around the panel */
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 11px;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          #ff00aa,
+          #ffe600,
+          #aaff00,
+          #00e5ff,
+          #aa00ff,
+          #ff00aa
+        );
+        filter: blur(1px);
+      }
+      .panel p {
+        margin: 0;
+        font-size: 1.02rem;
+        line-height: 1.6;
+        color: #fff;
+        text-shadow: 1px 1px 0 #000;
+      }
+
+      /* ✨ sparkly divider — each star twinkles on its own beat ✨ */
+      .sparkles {
+        font-size: 1.25rem;
+        letter-spacing: 6px;
+        margin: 0 0 22px;
+        user-select: none;
+        line-height: 1;
+      }
+      .sparkles span {
+        display: inline-block;
+        animation: pop 1.8s ease-in-out infinite;
+      }
+      .sparkles span:nth-child(odd) {
+        animation-delay: 0.4s;
+      }
+      .sparkles span:nth-child(3n) {
+        animation-delay: 0.9s;
+      }
+      .sparkles span:nth-child(4n) {
+        animation-delay: 1.3s;
+      }
+      @keyframes pop {
+        0%,
+        100% {
+          transform: scale(0.7) rotate(-8deg);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.25) rotate(8deg);
+          opacity: 1;
+          filter: drop-shadow(0 0 6px #fff);
+        }
+      }
+
+      /* =========================================================
+     4. CTA BLOCKS
+     ========================================================= */
+      .ctas {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .cta {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+        font-size: 1.15rem;
+        padding: 16px 18px;
+        border-radius: 8px;
+        border: 3px solid #000;
+        /* beveled button + soft outer glow */
+        box-shadow:
+          inset 2px 2px 0 rgba(255, 255, 255, 0.7),
+          inset -3px -3px 0 rgba(0, 0, 0, 0.35),
+          5px 5px 0 rgba(0, 0, 0, 0.55);
+        cursor: pointer;
+        transition:
+          transform 0.08s ease,
+          box-shadow 0.2s ease;
+      }
+      /* subtiele glinster — zachter en met flinke pauze ertussen */
+      .cta::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(
+          100deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transform: skewX(-20deg);
+        animation: sweep 7s ease-in-out infinite;
+      }
+      .cta--signal::after {
+        animation-delay: 2.5s;
+      }
+      @keyframes sweep {
+        0% {
+          left: -60%;
+        }
+        30% {
+          left: 130%;
+        }
+        100% {
+          left: 130%;
+        }
+      }
+      .cta:hover {
+        box-shadow:
+          inset 2px 2px 0 rgba(255, 255, 255, 0.8),
+          inset -3px -3px 0 rgba(0, 0, 0, 0.35),
+          5px 5px 0 rgba(0, 0, 0, 0.55),
+          0 0 14px rgba(255, 255, 255, 0.4);
+      }
+      .cta:active {
+        transform: translate(3px, 3px);
+      }
+
+      .cta--insta {
+        background: linear-gradient(135deg, #ff00aa, #aa00ff);
+        color: #fff;
+        text-shadow: 1px 1px 0 #000;
+      }
+      .cta--signal {
+        background: linear-gradient(135deg, #00e5ff, #00ffaa);
+      }
+      .cta .booo {
+        font-size: 0.7rem;
+        font-weight: normal;
+        opacity: 0.9;
+        vertical-align: super;
+      }
+
+      /* newsletter form panel */
+      .news {
+        background: rgba(255, 255, 255, 0.92);
+        border: 4px solid var(--magenta);
+        border-radius: 8px;
+        box-shadow:
+          0 0 0 3px #000,
+          6px 6px 0 rgba(0, 0, 0, 0.5);
+        padding: 18px;
+        text-align: center;
+        color: #11001a;
+      }
+      .news h2 {
+        margin: 0 0 6px;
+        font-family: Impact, "Arial Black", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        /* rainbow gradient title to match the hero */
+        background: linear-gradient(
+          90deg,
+          #ff00aa,
+          #ff6600,
+          #aaff00,
+          #00e5ff,
+          #aa00ff,
+          #ff00aa
+        );
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: shimmer 5s ease-in-out infinite;
+      }
+      .news p {
+        margin: 0 0 12px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+      .news__fields {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .news input[type="text"],
+      .news input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border: 3px solid #000;
+        border-radius: 6px;
+        background: #fff;
+      }
+      .news button {
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #000;
+        background: linear-gradient(135deg, #aaff00, #ffe600);
+        border: 3px solid #000;
+        border-radius: 6px;
+        box-shadow:
+          inset 2px 2px 0 rgba(255, 255, 255, 0.7),
+          inset -3px -3px 0 rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+      .news button:active {
+        transform: translate(2px, 2px);
+      }
+      .news__msg {
+        margin: 10px 0 0;
+        font-weight: bold;
+        font-size: 0.9rem;
+        min-height: 1.2em;
+        color: #009900;
+      }
+
+      /* ✨ sterretje dat de muis volgt + glittersliert ✨ */
+      .cursor-star {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+        font-size: 1.4rem;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        will-change: transform;
+        filter: drop-shadow(0 0 4px #fff);
+      }
+      .cursor-trail {
+        position: fixed;
+        z-index: 9998;
+        font-size: 0.8rem;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        animation: trailfade 0.7s ease-out forwards;
+      }
+      @keyframes trailfade {
+        0% {
+          opacity: 0.9;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.3) translateY(8px);
+        }
+      }
+      /* niet tonen op touch-apparaten (geen muis) */
+      @media (hover: none) {
+        .cursor-star,
+        .cursor-trail {
+          display: none;
+        }
+      }
+
+      /* respect users who don't want motion */
+      @media (prefers-reduced-motion: reduce) {
+        .wordart,
+        .marquee__track,
+        .sparkles span,
+        .cta::after,
+        .news h2 {
+          animation: none !important;
+        }
+        .wordart,
+        .marquee__track,
+        .news h2 {
+          background-position: 0 50%;
+        }
+        .sparkles span {
+          opacity: 1;
+          transform: none;
+        }
+        .cta::after {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- 1. HERO -->
+      <div class="hero">
+        <h1 class="wordart">Tante<span class="line2">Ria</span></h1>
+      </div>
+
+      <!-- 2. MARQUEE TAGLINE -->
+      <div class="marquee" aria-label="tagline">
+        <span class="marquee__track">
+          ★ De gezelligste avond van het jaar ★ Save the date ★
+          &nbsp;&nbsp;&nbsp; ★ De gezelligste avond van het jaar ★ Save the date
+          ★
+        </span>
+      </div>
+
+      <!-- 3. INTRO -->
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tante Ria
+          nodigt je uit voor een avond vol gezelligheid, glitter en gouden
+          randjes. Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Kom zoals je bent, dans tot je niet meer kunt, en vergeet
+          vooral je beste outfit niet. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris.
+        </p>
+      </div>
+
+      <div class="sparkles" aria-hidden="true">
+        <span>✨</span><span>★</span><span>✨</span><span>💖</span
+        ><span>✨</span><span>★</span><span>✨</span><span>💖</span
+        ><span>✨</span><span>★</span><span>✨</span><span>💖</span>
+      </div>
+
+      <!-- 4. CTAs -->
+      <div class="ctas">
+        <a
+          class="cta cta--insta"
+          href="https://www.instagram.com/tante__ria_amsterdam/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Volg ons op Instagram <span class="booo">(booo)</span>
+        </a>
+        <a class="cta cta--signal" href="#"> Join de Signal-groep </a>
+      </div>
+
+      <!-- Newsletter — post naar subscribe.php (PHP-proxy houdt de API-key
+         server-side; de browser ziet de EmailOctopus-key nooit). -->
+      <form
+        class="news"
+        id="newsletter"
+        action="subscribe.php"
+        method="post"
+        novalidate
+      >
+        <h2>★ Nieuwsbrief ★</h2>
+        <p>Schrijf je in en mis nooit meer een avond van Tante&nbsp;Ria.</p>
+        <div class="news__fields">
+          <input
+            type="text"
+            name="first_name"
+            id="firstName"
+            placeholder="Voornaam"
+            required
+            autocomplete="given-name"
+          />
+          <input
+            type="text"
+            name="last_name"
+            id="lastName"
+            placeholder="Achternaam"
+            autocomplete="family-name"
+          />
+          <input
+            type="email"
+            name="email_address"
+            id="email"
+            placeholder="jouw@email.nl"
+            required
+            autocomplete="email"
+          />
+        </div>
+        <button type="submit">Inschrijven!</button>
+        <p class="news__msg" id="newsMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <script>
+      // --- newsletter submit → subscribe.php (EmailOctopus-proxy) ---
+      document
+        .getElementById("newsletter")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var form = this;
+          var firstName = document.getElementById("firstName").value.trim();
+          var lastName = document.getElementById("lastName").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var msg = document.getElementById("newsMsg");
+
+          if (!firstName) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Vul je voornaam in, lieverd. 💕";
+            return;
+          }
+          if (!email || email.indexOf("@") === -1) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Vul een geldig e-mailadres in, schat. 💔";
+            return;
+          }
+
+          msg.style.color = "#11001a";
+          msg.textContent = "✨ Bezig met inschrijven… ✨";
+
+          try {
+            var res = await fetch("subscribe.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams({
+                email_address: email,
+                first_name: firstName,
+                last_name: lastName,
+              }),
+            });
+            var data = await res.json().catch(function () {
+              return {};
+            });
+
+            if (res.ok && data.ok) {
+              msg.style.color = "#009900";
+              msg.textContent = "✨ Je staat op de lijst! Check je mail ✨";
+              form.reset();
+            } else {
+              msg.style.color = "#cc0000";
+              msg.textContent =
+                data.error ||
+                "Oeps, er ging iets mis. Probeer het later nog eens.";
+            }
+          } catch (err) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Geen verbinding. Probeer het later nog eens. 💔";
+          }
+        });
+
+      // --- ✨ sterretje dat de muis volgt ---
+      (function () {
+        var noHover = window.matchMedia("(hover: none)").matches;
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (noHover || reduce) return;
+
+        var star = document.createElement("div");
+        star.className = "cursor-star";
+        star.textContent = "✨";
+        document.body.appendChild(star);
+
+        var x = window.innerWidth / 2,
+          y = window.innerHeight / 2;
+        var sx = x,
+          sy = y,
+          moves = 0;
+
+        document.addEventListener("pointermove", function (e) {
+          x = e.clientX;
+          y = e.clientY;
+          if (++moves % 6 === 0) {
+            var t = document.createElement("div");
+            t.className = "cursor-trail";
+            t.textContent = "✨";
+            t.style.left = x + "px";
+            t.style.top = y + "px";
+            document.body.appendChild(t);
+            setTimeout(function () {
+              t.remove();
+            }, 700);
+          }
+        });
+
+        (function loop() {
+          sx += (x - sx) * 0.18;
+          sy += (y - sy) * 0.18;
+          star.style.transform =
+            "translate(" + sx + "px," + sy + "px) translate(-50%,-50%)";
+          requestAnimationFrame(loop);
+        })();
+      })();
+    </script>
+  </body>
+</html>

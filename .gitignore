@@ -1,0 +1,10 @@
+# Echte EmailOctopus-config met de API-key — NOOIT committen
+config/emailoctopus.php
+emailoctopus.php
+config.php
+# (het .example-bestand mág wel mee in git)
+!config/emailoctopus.example.php
+
+# OS / editor rommel
+.DS_Store
+Thumbs.db

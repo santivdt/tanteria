@@ -27,7 +27,7 @@ jobs:
       # Upload via SFTP. delete:false => bestaande serverbestanden die niet in
       # dist/ zitten (zoals config/emailoctopus.php met je API-key) blijven staan.
       - name: SFTP upload
-        uses: Dylan700/sftp-upload-action@v1.2.4
+        uses: Dylan700/sftp-upload-action@latest
         with:
           server: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}

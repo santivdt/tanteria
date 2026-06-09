@@ -1,0 +1,38 @@
+name: Deploy naar Hostinger
+
+# Draait bij elke push naar main, plus handmatig via de Actions-tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Alleen de bestanden die écht naar de server moeten in een dist/-map
+      # zetten. Zo gaan .git, .github, README en het .example-bestand NIET mee.
+      - name: Build deploy-map
+        run: |
+          mkdir -p dist/config
+          cp index.html subscribe.php favicon.svg favicon.png \
+             apple-touch-icon.png og-image.png dist/
+          cp config/.htaccess dist/config/
+          echo "Te deployen bestanden:"
+          find dist -type f
+
+      # Upload via SFTP. delete:false => bestaande serverbestanden die niet in
+      # dist/ zitten (zoals config/emailoctopus.php met je API-key) blijven staan.
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          uploads: |
+            ./dist/ => ${{ secrets.SFTP_REMOTE_PATH }}
+          delete: false

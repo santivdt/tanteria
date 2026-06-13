@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>★ TANTE RIA ★ De gezelligste avond van het jaar ★</title>
+    <title>Tante Ria — De gezelligste avond van het jaar</title>
     <meta
       name="description"
       content="Tante Ria nodigt je uit voor de gezelligste avond van het jaar. Save the date en schrijf je in voor de nieuwsbrief."
@@ -16,7 +16,7 @@
 
     <!-- Social share (Open Graph + Twitter) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="★ TANTE RIA ★" />
+    <meta property="og:title" content="Tante Ria" />
     <meta
       property="og:description"
       content="De gezelligste avond van het jaar. Save the date!"
@@ -26,24 +26,34 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://tanteria.nl/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="★ TANTE RIA ★" />
+    <meta name="twitter:title" content="Tante Ria" />
     <meta
       name="twitter:description"
       content="De gezelligste avond van het jaar. Save the date!"
     />
     <meta name="twitter:image" content="https://tanteria.nl/og-image.png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       /* ===========================================================
-     TANTE RIA — peak 1998 GeoCities / WordArt energy
-     Loud chrome outside, legible panels inside.
-     =========================================================== */
+         TANTE RIA — clean, minimal, modern + WordArt heading
+         =========================================================== */
 
       :root {
-        --magenta: #ff00aa;
-        --cyan: #00e5ff;
-        --lime: #aaff00;
-        --ink: #11001a;
+        --ink: #1a1820;
+        --muted: #6b6675;
+        --line: #e8e4ec;
+        --bg: #faf8f6;
+        --card: #ffffff;
+        --accent: #e6447e;
+        --accent-hover: #d23a70;
+        --radius: 16px;
       }
 
       * {
@@ -57,54 +67,51 @@
       }
 
       body {
-        font-family: "Comic Sans MS", "Trebuchet MS", Verdana, sans-serif;
-        color: #fff;
-        text-align: center;
-        /* Lichte, luchtige pastel-gradient in de TANTE RIA-kleuren.
-       Zachte roze + cyaan gloed over een crème-roze-naar-lichtblauw
-       verloop. Rustig, en de donkere panelen springen er mooi uit. */
-        background-color: #ffe9f6;
-        background-image:
-          radial-gradient(
-            900px 600px at 15% 10%,
-            rgba(255, 0, 170, 0.14),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 600px at 85% 90%,
-            rgba(0, 229, 255, 0.16),
-            transparent 60%
-          ),
-          linear-gradient(160deg, #ffe9f6 0%, #f3e8ff 45%, #e6f7ff 100%);
-        background-attachment: fixed;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
         min-height: 100vh;
-        padding: 18px 10px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: clamp(28px, 6vw, 72px) 20px;
       }
 
       .page {
-        max-width: 720px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
+        width: 100%;
+        max-width: 560px;
       }
 
-      /* =========================================================
-     1. HERO TITLE — faux WordArt
-     ========================================================= */
+      /* HEADER */
+      .eyebrow {
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 18px;
+      }
+
+      /* WordArt heading — loud title, kept from the classic version */
       .hero {
-        margin: 10px 0 6px;
+        margin: 6px 0 4px;
         transform: skewY(-3deg);
       }
       .wordart {
         font-family: Impact, "Arial Black", "Haettenschweiler", sans-serif;
         font-weight: 900;
-        /* clamp keeps it from overflowing on phones */
-        font-size: clamp(3rem, 16vw, 8.5rem);
+        font-size: clamp(3rem, 16vw, 7rem);
         line-height: 0.9;
         letter-spacing: 2px;
         text-transform: uppercase;
         margin: 0;
-        /* rainbow gradient FILL via background-clip */
         background: linear-gradient(
           90deg,
           #ff00aa,
@@ -120,17 +127,14 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
-        /* thick outline + hard drop shadow stacked behind the gradient text */
         -webkit-text-stroke: 3px #11001a;
         filter: drop-shadow(4px 4px 0 #000)
           drop-shadow(6px 6px 0 rgba(0, 229, 255, 0.9));
-        /* slow shimmer — gradient slides, gentle */
         animation: shimmer 8s ease-in-out infinite;
       }
       .wordart .line2 {
         display: block;
       }
-
       @keyframes shimmer {
         0%,
         100% {
@@ -141,389 +145,208 @@
         }
       }
 
-      /* =========================================================
-     2. TAGLINE — CSS marquee (no deprecated <marquee>)
-     ========================================================= */
-      .marquee {
-        margin: 14px 0 22px;
-        background: #000;
-        border-top: 4px solid var(--lime);
-        border-bottom: 4px solid var(--lime);
-        overflow: hidden;
-        white-space: nowrap;
-        padding: 8px 0;
-      }
-      .marquee__track {
-        display: inline-block;
-        padding-left: 100%;
-        font-weight: bold;
-        font-size: 1.05rem;
-        letter-spacing: 1px;
-        /* rainbow gradient text, same trick as the hero title */
-        background: linear-gradient(
-          90deg,
-          #ff00aa,
-          #ffe600,
-          #aaff00,
-          #00e5ff,
-          #aa00ff,
-          #ff00aa
-        );
-        background-size: 200% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        animation:
-          scroll-left 16s linear infinite,
-          shimmer 6s ease-in-out infinite;
-      }
-      .marquee:hover .marquee__track {
-        animation-play-state: paused;
+      .lede {
+        font-size: 1.12rem;
+        color: var(--muted);
+        margin: 44px 0 0;
+        max-width: 42ch;
       }
 
-      @keyframes scroll-left {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-
-      /* =========================================================
-     3. PANELS — semi-opaque so text stays readable
-     ========================================================= */
-      .panel {
-        position: relative;
-        background: rgba(17, 0, 26, 0.85);
-        border-radius: 8px;
-        box-shadow:
-          0 0 0 3px #000,
-          8px 8px 0 rgba(0, 0, 0, 0.5),
-          0 0 22px rgba(255, 0, 170, 0.45);
-        padding: 22px 24px;
-        margin: 0 auto 26px;
-        text-align: left;
-      }
-      /* static rainbow glow ring around the panel */
-      .panel::before {
-        content: "";
-        position: absolute;
-        inset: -5px;
-        border-radius: 11px;
-        z-index: -1;
-        background: conic-gradient(
-          from 0deg,
-          #ff00aa,
-          #ffe600,
-          #aaff00,
-          #00e5ff,
-          #aa00ff,
-          #ff00aa
-        );
-        filter: blur(1px);
-      }
-      .panel p {
-        margin: 0;
+      /* INTRO */
+      .intro {
+        margin: 40px 0 0;
+        color: var(--ink);
         font-size: 1.02rem;
-        line-height: 1.6;
-        color: #fff;
-        text-shadow: 1px 1px 0 #000;
       }
 
-      /* ✨ sparkly divider — each star twinkles on its own beat ✨ */
-      .sparkles {
-        font-size: 1.25rem;
-        letter-spacing: 6px;
-        margin: 0 0 22px;
-        user-select: none;
-        line-height: 1;
-      }
-      .sparkles span {
-        display: inline-block;
-        filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+      .intro p {
+        margin: 0;
       }
 
-      /* =========================================================
-     4. CTA BLOCKS
-     ========================================================= */
-      .ctas {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin-bottom: 28px;
+      /* DIVIDER */
+      .divider {
+        height: 1px;
+        background: var(--line);
+        border: 0;
+        margin: 40px 0;
       }
 
+      /* CTA */
       .cta {
-        position: relative;
-        overflow: hidden;
-        display: block;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         text-decoration: none;
-        color: #000;
-        font-weight: bold;
-        font-size: 1.15rem;
-        padding: 16px 18px;
-        border-radius: 8px;
-        border: 3px solid #000;
-        /* beveled button + soft outer glow */
-        box-shadow:
-          inset 2px 2px 0 rgba(255, 255, 255, 0.7),
-          inset -3px -3px 0 rgba(0, 0, 0, 0.35),
-          5px 5px 0 rgba(0, 0, 0, 0.55);
-        cursor: pointer;
+        font-weight: 500;
+        font-size: 0.98rem;
+        color: var(--ink);
+        padding: 12px 20px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--card);
         transition:
-          transform 0.08s ease,
+          border-color 0.2s ease,
+          transform 0.15s ease,
           box-shadow 0.2s ease;
       }
-      /* subtiele glinster — zachter en met flinke pauze ertussen */
-      .cta::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -60%;
-        width: 40%;
-        height: 100%;
-        background: linear-gradient(
-          100deg,
-          transparent,
-          rgba(255, 255, 255, 0.4),
-          transparent
-        );
-        transform: skewX(-20deg);
-        animation: sweep 7s ease-in-out infinite;
-      }
-      .cta--signal::after {
-        animation-delay: 2.5s;
-      }
-      @keyframes sweep {
-        0% {
-          left: -60%;
-        }
-        30% {
-          left: 130%;
-        }
-        100% {
-          left: 130%;
-        }
-      }
       .cta:hover {
-        box-shadow:
-          inset 2px 2px 0 rgba(255, 255, 255, 0.8),
-          inset -3px -3px 0 rgba(0, 0, 0, 0.35),
-          5px 5px 0 rgba(0, 0, 0, 0.55),
-          0 0 14px rgba(255, 255, 255, 0.4);
+        border-color: var(--ink);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(26, 24, 32, 0.06);
       }
-      .cta:active {
-        transform: translate(3px, 3px);
-      }
-
-      .cta--insta {
-        background: linear-gradient(135deg, #ff00aa, #aa00ff);
-        color: #fff;
-        text-shadow: 1px 1px 0 #000;
-      }
-      .cta--signal {
-        background: linear-gradient(135deg, #00e5ff, #00ffaa);
-      }
-      .cta .booo {
-        font-size: 0.7rem;
-        font-weight: normal;
-        opacity: 0.9;
-        vertical-align: super;
+      .cta svg {
+        width: 18px;
+        height: 18px;
       }
 
-      /* newsletter form panel */
+      /* NEWSLETTER */
       .news {
-        background: rgba(255, 244, 198, 0.96);
-        border: 4px solid var(--magenta);
-        border-radius: 8px;
-        box-shadow:
-          0 0 0 3px #000,
-          6px 6px 0 rgba(0, 0, 0, 0.5);
-        padding: 18px;
-        text-align: center;
-        color: #11001a;
+        margin: 40px 0 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: clamp(24px, 5vw, 36px);
       }
       .news h2 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 600;
+        font-size: 1.5rem;
+        letter-spacing: -0.01em;
         margin: 0 0 6px;
-        font-family: Impact, "Arial Black", sans-serif;
-        font-size: 1.6rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        /* rainbow gradient title to match the hero */
-        background: linear-gradient(
-          90deg,
-          #ff00aa,
-          #ff6600,
-          #aaff00,
-          #00e5ff,
-          #aa00ff,
-          #ff00aa
-        );
-        background-size: 250% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        animation: shimmer 5s ease-in-out infinite;
+        color: var(--ink);
       }
-      .news p {
-        margin: 0 0 12px;
-        font-size: 0.9rem;
-        color: #333;
+      .news > p {
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 0.96rem;
       }
       .news__fields {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-bottom: 12px;
+        gap: 12px;
+        margin-bottom: 16px;
       }
-      .news input[type="text"],
-      .news input[type="email"] {
+      .news input {
         width: 100%;
-        padding: 12px;
+        padding: 13px 15px;
         font-size: 1rem;
-        border: 3px solid #000;
-        border-radius: 6px;
+        font-family: inherit;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--bg);
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+      .news input::placeholder {
+        color: #a8a3b0;
+      }
+      .news input:focus {
+        outline: none;
+        border-color: var(--accent);
         background: #fff;
       }
       .news button {
         width: 100%;
-        padding: 13px 20px;
+        padding: 14px 20px;
         font-size: 1rem;
-        font-weight: bold;
-        color: #000;
-        background: linear-gradient(135deg, #aaff00, #ffe600);
-        border: 3px solid #000;
-        border-radius: 6px;
-        box-shadow:
-          inset 2px 2px 0 rgba(255, 255, 255, 0.7),
-          inset -3px -3px 0 rgba(0, 0, 0, 0.3);
+        font-weight: 600;
+        font-family: inherit;
+        color: #fff;
+        background: var(--accent);
+        border: 0;
+        border-radius: 10px;
         cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.15s ease;
+      }
+      .news button:hover {
+        background: var(--accent-hover);
       }
       .news button:active {
-        transform: translate(2px, 2px);
+        transform: translateY(1px);
       }
       .news__msg {
-        margin: 10px 0 0;
-        font-weight: bold;
+        margin: 14px 0 0;
+        font-weight: 500;
         font-size: 0.9rem;
         min-height: 1.2em;
-        color: #009900;
+        color: var(--accent);
       }
 
-      /* ✨ sterretje dat de muis volgt + glittersliert ✨ */
-      .cursor-star {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 9999;
-        font-size: 1.4rem;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        will-change: transform;
-        filter: drop-shadow(0 0 4px #fff);
-      }
-      .cursor-trail {
-        position: fixed;
-        z-index: 9998;
-        font-size: 0.8rem;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        animation: trailfade 0.7s ease-out forwards;
-      }
-      @keyframes trailfade {
-        0% {
-          opacity: 0.9;
-          transform: translate(-50%, -50%) scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(0.3) translateY(8px);
-        }
-      }
-      /* niet tonen op touch-apparaten (geen muis) */
-      @media (hover: none) {
-        .cursor-star,
-        .cursor-trail {
-          display: none;
-        }
+      /* FOOTER */
+      .footer {
+        margin: 48px 0 0;
+        font-size: 0.82rem;
+        color: var(--muted);
       }
 
-      /* respect users who don't want motion */
       @media (prefers-reduced-motion: reduce) {
-        .wordart,
-        .marquee__track,
-        .sparkles span,
-        .cta::after,
-        .news h2 {
+        .wordart {
           animation: none !important;
-        }
-        .wordart,
-        .marquee__track,
-        .news h2 {
           background-position: 0 50%;
-        }
-        .sparkles span {
-          opacity: 1;
-          transform: none;
-        }
-        .cta::after {
-          display: none;
         }
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <!-- 1. HERO -->
-      <div class="hero">
-        <h1 class="wordart">Tante<span class="line2">Ria</span></h1>
-      </div>
+      <!-- HEADER -->
+      <header>
+        <p class="eyebrow">Coming soon</p>
+        <div class="hero">
+          <h1 class="wordart">Tante<span class="line2">Ria</span></h1>
+        </div>
+        <p class="lede">Love me some Rummikub en gevulde eieren 🏳️‍🌈.</p>
+      </header>
 
-      <!-- 2. MARQUEE TAGLINE -->
-      <div class="marquee" aria-label="tagline">
-        <span class="marquee__track">
-          ★ De gezelligste avond van het jaar ★ Save the date ★
-          &nbsp;&nbsp;&nbsp; ★ De gezelligste avond van het jaar ★ Save the date
-          ★
-        </span>
-      </div>
-
-      <!-- 3. INTRO -->
-      <div class="panel">
+      <!-- INTRO -->
+      <section class="intro">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tante Ria
-          nodigt je uit voor een avond vol gezelligheid, glitter en gouden
-          randjes. Sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Kom zoals je bent, dans tot je niet meer kunt, en vergeet
-          vooral je beste outfit niet. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris.
+          Feestelijke gezelligheid voor LBQ vrouwen en trans/non-binaire
+          personen.
         </p>
-      </div>
+      </section>
 
-      <div class="sparkles" aria-hidden="true">
-        <span>✨</span><span>★</span><span>✨</span><span>💖</span
-        ><span>✨</span><span>★</span><span>✨</span><span>💖</span
-        ><span>✨</span><span>★</span><span>✨</span><span>💖</span>
-      </div>
+      <hr class="divider" />
 
-      <!-- 4. CTAs -->
-      <div class="ctas">
-        <a
-          class="cta cta--insta"
-          href="https://www.instagram.com/tante__ria_amsterdam/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Volg ons op Instagram <span class="booo">(booo)</span>
-        </a>
-        <a class="cta cta--signal" href="#"> Join de Signal-groep </a>
-      </div>
+      <!-- CTA -->
+      <a
+        class="cta"
+        href="https://www.instagram.com/tante__ria_amsterdam/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect
+            x="2.5"
+            y="2.5"
+            width="19"
+            height="19"
+            rx="5.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="4.2"
+            stroke="currentColor"
+            stroke-width="1.6"
+          />
+          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+        </svg>
+        Volg ons op Instagram
+      </a>
+
+      <!-- TEMPORARILY HIDDEN: Signal-groep CTA
+      <a class="cta" href="#">Join de Signal-groep</a>
+      -->
 
       <!-- Newsletter — post naar subscribe.php (PHP-proxy houdt de API-key
-         server-side; de browser ziet de EmailOctopus-key nooit). -->
+           server-side; de browser ziet de EmailOctopus-key nooit). -->
       <form
         class="news"
         id="newsletter"
@@ -531,8 +354,12 @@
         method="post"
         novalidate
       >
-        <h2>★ Nieuwsbrief ★</h2>
-        <p>Schrijf je in en mis nooit meer een avond van Tante&nbsp;Ria.</p>
+        <h2>Nieuwsbrief</h2>
+        <p>
+          Schrijf je in en mis nooit meer een avond van Tante&nbsp;Ria. We
+          mailen alleen als er een feest gepland wordt en de tickets in de
+          verkoop gaan. No spam.
+        </p>
         <div class="news__fields">
           <input
             type="text"
@@ -558,13 +385,15 @@
             autocomplete="email"
           />
         </div>
-        <button type="submit">Inschrijven!</button>
+        <button type="submit">Inschrijven</button>
         <p class="news__msg" id="newsMsg" role="status" aria-live="polite"></p>
       </form>
+
+      <footer class="footer">© Tante Ria · Amsterdam</footer>
     </div>
 
     <script>
-      // --- newsletter submit → subscribe.php (EmailOctopus-proxy) ---
+      // --- newsletter submit -> subscribe.php (EmailOctopus-proxy) ---
       document
         .getElementById("newsletter")
         .addEventListener("submit", async function (e) {
@@ -577,17 +406,17 @@
 
           if (!firstName) {
             msg.style.color = "#cc0000";
-            msg.textContent = "Vul je voornaam in, lieverd. 💕";
+            msg.textContent = "Vul je voornaam in.";
             return;
           }
           if (!email || email.indexOf("@") === -1) {
             msg.style.color = "#cc0000";
-            msg.textContent = "Vul een geldig e-mailadres in, schat. 💔";
+            msg.textContent = "Vul een geldig e-mailadres in.";
             return;
           }
 
-          msg.style.color = "#11001a";
-          msg.textContent = "✨ Bezig met inschrijven… ✨";
+          msg.style.color = "#6b6675";
+          msg.textContent = "Bezig met inschrijven…";
 
           try {
             var res = await fetch("subscribe.php", {
@@ -604,8 +433,8 @@
             });
 
             if (res.ok && data.ok) {
-              msg.style.color = "#009900";
-              msg.textContent = "✨ Je staat op de lijst! Check je mail ✨";
+              msg.style.color = "#188a4e";
+              msg.textContent = "Je staat op de lijst! Check je mail.";
               form.reset();
             } else {
               msg.style.color = "#cc0000";
@@ -615,53 +444,9 @@
             }
           } catch (err) {
             msg.style.color = "#cc0000";
-            msg.textContent = "Geen verbinding. Probeer het later nog eens. 💔";
+            msg.textContent = "Geen verbinding. Probeer het later nog eens.";
           }
         });
-
-      // --- ✨ sterretje dat de muis volgt ---
-      (function () {
-        var noHover = window.matchMedia("(hover: none)").matches;
-        var reduce = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        if (noHover || reduce) return;
-
-        var star = document.createElement("div");
-        star.className = "cursor-star";
-        star.textContent = "✨";
-        document.body.appendChild(star);
-
-        var x = window.innerWidth / 2,
-          y = window.innerHeight / 2;
-        var sx = x,
-          sy = y,
-          moves = 0;
-
-        document.addEventListener("pointermove", function (e) {
-          x = e.clientX;
-          y = e.clientY;
-          if (++moves % 6 === 0) {
-            var t = document.createElement("div");
-            t.className = "cursor-trail";
-            t.textContent = "✨";
-            t.style.left = x + "px";
-            t.style.top = y + "px";
-            document.body.appendChild(t);
-            setTimeout(function () {
-              t.remove();
-            }, 700);
-          }
-        });
-
-        (function loop() {
-          sx += (x - sx) * 0.18;
-          sy += (y - sy) * 0.18;
-          star.style.transform =
-            "translate(" + sx + "px," + sy + "px) translate(-50%,-50%)";
-          requestAnimationFrame(loop);
-        })();
-      })();
     </script>
   </body>
 </html>

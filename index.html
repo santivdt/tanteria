@@ -40,6 +40,26 @@
       rel="stylesheet"
     />
 
+    <!-- Matomo -->
+    <script>
+      var _paq = (window._paq = window._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
+      (function () {
+        var u = "//matomo.santi.tech/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"]);
+        _paq.push(["setSiteId", "4"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
     <style>
       /* ===========================================================
          TANTE RIA — clean, minimal, modern + WordArt heading
@@ -242,10 +262,25 @@
       .news input::placeholder {
         color: #a8a3b0;
       }
-      .news input:focus {
+      .news input:focus,
+      .news select:focus {
         outline: none;
         border-color: var(--accent);
         background: #fff;
+      }
+      .news select {
+        width: 100%;
+        padding: 13px 15px;
+        font-size: 1rem;
+        font-family: inherit;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--bg);
+      }
+      .news button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
       }
       .news button {
         width: 100%;
@@ -355,6 +390,44 @@
         Join de Signal-groep
       </a>
 
+      <!-- Kaarten — verborgen totdat config/tickets.php sales_open = true
+           heeft; status.php verklapt geen secrets, enkel prijs/aantal. -->
+      <section class="news" id="tickets" style="display: none">
+        <h2>Kaarten</h2>
+        <p id="ticketsInfo"></p>
+        <form id="ticketForm" novalidate>
+          <div class="news__fields">
+            <input
+              type="text"
+              name="name"
+              id="tName"
+              placeholder="Naam"
+              required
+              autocomplete="name"
+            />
+            <input
+              type="email"
+              name="email"
+              id="tEmail"
+              placeholder="jouw@email.nl"
+              required
+              autocomplete="email"
+            />
+            <select name="quantity" id="tQty">
+              <option value="1">1 kaart</option>
+              <option value="2">2 kaarten</option>
+            </select>
+          </div>
+          <button type="submit" id="tBuyBtn">Koop kaarten</button>
+          <p
+            class="news__msg"
+            id="ticketMsg"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
+
       <!-- Newsletter — post naar subscribe.php (PHP-proxy houdt de API-key
            server-side; de browser ziet de EmailOctopus-key nooit). -->
       <form
@@ -403,6 +476,94 @@
     </div>
 
     <script>
+      // --- kaarten: status ophalen en blok tonen zodra sales_open true is ---
+      async function loadTicketStatus() {
+        try {
+          var res = await fetch("status.php");
+          var data = await res.json();
+          if (!data.ok || !data.sales_open) return;
+
+          var section = document.getElementById("tickets");
+          var info = document.getElementById("ticketsInfo");
+          var btn = document.getElementById("tBuyBtn");
+          var price = (data.price_cents / 100).toLocaleString("nl-NL", {
+            style: "currency",
+            currency: data.currency.toUpperCase(),
+          });
+
+          if (data.sold_out) {
+            info.textContent = data.event_name + " — helaas uitverkocht.";
+            btn.disabled = true;
+          } else {
+            info.textContent =
+              data.event_name +
+              " — " +
+              price +
+              " per kaart. Nog " +
+              data.remaining +
+              " van de " +
+              data.limit +
+              " beschikbaar. Max " +
+              data.max_per_person +
+              " per persoon.";
+          }
+          section.style.display = "";
+        } catch (err) {
+          // status.php niet bereikbaar -> blok blijft verborgen
+        }
+      }
+      loadTicketStatus();
+
+      document
+        .getElementById("ticketForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var name = document.getElementById("tName").value.trim();
+          var email = document.getElementById("tEmail").value.trim();
+          var quantity = document.getElementById("tQty").value;
+          var msg = document.getElementById("ticketMsg");
+          var btn = document.getElementById("tBuyBtn");
+
+          if (!name) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Vul je naam in.";
+            return;
+          }
+          if (!email || email.indexOf("@") === -1) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Vul een geldig e-mailadres in.";
+            return;
+          }
+
+          btn.disabled = true;
+          msg.style.color = "#6b6675";
+          msg.textContent = "Bezig met doorsturen naar betalen…";
+
+          try {
+            var res = await fetch("buy.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams({ name: name, email: email, quantity: quantity }),
+            });
+            var data = await res.json().catch(function () {
+              return {};
+            });
+
+            if (res.ok && data.ok && data.url) {
+              window.location.href = data.url;
+              return;
+            }
+
+            msg.style.color = "#cc0000";
+            msg.textContent =
+              data.error || "Oeps, er ging iets mis. Probeer het later nog eens.";
+          } catch (err) {
+            msg.style.color = "#cc0000";
+            msg.textContent = "Geen verbinding. Probeer het later nog eens.";
+          }
+          btn.disabled = false;
+        });
+
       // --- newsletter submit -> subscribe.php (EmailOctopus-proxy) ---
       document
         .getElementById("newsletter")

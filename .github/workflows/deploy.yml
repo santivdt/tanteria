@@ -14,13 +14,16 @@ jobs:
         uses: actions/checkout@v4
 
       # Alleen de bestanden die écht naar de server moeten in een dist/-map
-      # zetten. Zo gaan .git, .github, README en het .example-bestand NIET mee.
+      # zetten. Zo gaan .git, .github, README en de .example-bestanden NIET mee.
       - name: Build deploy-map
         run: |
-          mkdir -p dist/config
-          cp index.html subscribe.php favicon.svg favicon.png \
+          mkdir -p dist/config dist/lib dist/data
+          cp index.html subscribe.php buy.php webhook.php status.php \
+             success.html cancel.html favicon.svg favicon.png \
              apple-touch-icon.png og-image.png dist/
           cp config/.htaccess dist/config/
+          cp lib/*.php dist/lib/
+          cp data/.htaccess dist/data/
           echo "Te deployen bestanden:"
           find dist -type f
 

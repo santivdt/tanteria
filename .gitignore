@@ -5,6 +5,14 @@ config.php
 # (het .example-bestand mág wel mee in git)
 !config/emailoctopus.example.php
 
+# Echte tickets-config met Stripe/AhaSend/Sheets-secrets — NOOIT committen
+config/tickets.php
+!config/tickets.example.php
+
+# Lokale tickets-database (alleen relevant als je lokaal test)
+data/*.sqlite
+data/*.sqlite-*
+
 # OS / editor rommel
 .DS_Store
 Thumbs.db
